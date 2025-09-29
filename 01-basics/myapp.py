@@ -27,8 +27,10 @@ def get_input():
         try:
             print("Choose what you want to do. Enter your choice in the format of a whole number.")
             choice = int(input("TALK|FORGIVENESS|PACKAGE INSTALL\nT->(0);F->(1);PI(2) or [anything higher to escape]: "))
+            if choice < 0:
+                raise ValueError
             break
-        except ValueError or choice < 0:
+        except ValueError:
             print("Only enter a whole number in the format that was specified!")
             continue
     return choice
