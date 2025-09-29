@@ -75,3 +75,23 @@ Použijte vhodné moduly v Pythonu (včetně jejich případné instalace) k tom
 K řešení prvního úkolu je možné doporučit importovat interní modul datetime
 Řešení dalších dvou úkolů můžete odvodit z příkladů v dokumentaci k externímu modulu dateutil - viz https://pypi.org/project/python-dateutil/
 """
+
+from dateutil.relativedelta import *
+from dateutil.rrule import *
+from dateutil.parser import *
+
+from datetime import *
+from dateutil.easter import *
+
+print(datetime.now())
+
+for i in range(2026, 2032):
+    print(easter(i, 3))
+
+
+#now = parse("Sun Sep 28 18:50:46 UTC 2025")
+today = datetime.now()#now.date()
+year = rrule(YEARLY,dtstart=today,bymonth=12,bymonthday=25,byweekday=SU)[0].year
+#rdelta = relativedelta((year), today)
+
+print(f"The first Christmass on Sunday will be in the year {year}")
