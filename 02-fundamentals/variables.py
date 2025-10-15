@@ -29,8 +29,10 @@ Některé objekty mohou mít explicitně přiřazené jméno, obecně označovan
 
 '''Úkol A'''
 #? Najděte na Internetu, jakými funkcemi lze v Pythonu zjistit
-#? a) typ objektu
-#? b) identitu objektu (jeho adresu v paměti)
+#? a) typ objektu - type()
+print(type(students_count))
+print(id(students_count))
+#? b) identitu objektu (jeho adresu v paměti) - id()
 #? Ukažte to na příkladech proměnných students_count, rating, is_published a vypište výstupy do konzole
 
 # Numerické operátory
@@ -72,7 +74,19 @@ hexadecimal = 0x12c #Hexadecimal Literal
 #? Pro toto binární číslo proveďte nejprve bitový posun o 2 bity vpravo, poté vypište výsledek v desítkové soustavě
 #? Proveďte bitový součin hexadecimálního čísla "1A" a vašeho binárního čísla a opět vypište v desítkové soustavě
 #? Výsledek zobrazte jako formátovaný řetězec - např. "Binární součin čísla 0b11010 a 0b10110101 je 0b10000"
-
+"""
+>> RIGHT SHIFT
+<< LEFT SHIFT
+^ XOR
+~ NOT
+| OR
+& AND
+"""
+myself_binary = 0b10101101
+print(myself_binary)
+myself_binary >>= 2
+print(myself_binary)
+print(f"{bin(0x1a & 0b10101101)}")
 
 '''Python plně podporuje operace v plovoucí řádové čárce (tj. desetinná čísla). 
 Operátor pracující s různými typy operandů si nejprve zkonvertuje celá čísla na čísla 
