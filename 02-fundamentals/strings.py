@@ -18,19 +18,20 @@ Python podporuje i tzv. raw řetězce (cosi jak ryzí, syrové řetězce), u nic
 nepřevádí na odpovídající znaky.3.2. Raw řetězce charakterizuje předpona r. 
 Potom řetězec r'\n' odpovídá dvěma znakům - zpětnému lomítku a znaku n, kdežto řetězec '\n' je jediný znak nového řádku:
 '''
-
+"""
 hello = r'Toto je dlouhý řetězec obsahující mnoho\n\
 řádek textu, stejně jej zapisujete i v C.'
 
 print(hello)
-
+"""
 '''
 Další možností, jak vytvořit víceřádkový řetězec je jeho uzavření mezi odpovídající pár trojitých uvozovek. 
 To má tu výhodu, že nemusíme explicitně zapisovat konce řádků, ty bude řetězec obsahovat přesně tak, 
 jak jsou zapsány ve zdrojovém kódu
 '''
+"""
 # Předformátovaný text je uvozen trojími uvozovkami
-message = '''
+message = """'''
     Krásný pozdrav z výletu do \"přírody\"
 
     posílá 
@@ -50,10 +51,10 @@ Na získání podřetězce nepotřebujeme žádné speciální funkce, samotný 
 Subsekvenci indexujeme podobně jako jednotlivé znaky, pouze potřebuje dva indexy (začátek a konec subsekvence), 
 které oddělíme dvojtečkou:
 '''
-
+"""
 # Vypíše 4. znak z řetězce
 print(course_name[3])
-
+"""
 '''
 Důležité je si zapamatovat, že slice indexy ukazují mezi znaky, přičemž levá hrana prvního znaku má číslo 0 
 a pravá hrana posledního znaku řetězce o n znacích má index n:
@@ -66,12 +67,12 @@ a pravá hrana posledního znaku řetězce o n znacích má index n:
 Na prvním řádku jsou uvedeny všechny možné slice-indexy 0...5 v řetězci 'HelpA', na druhém pak odpovídající záporné hodnoty. 
 Řez od i do j je tedy tvořen všemi znaky mezi hranami označenými mezi hranami označenými i a j.
 '''
-
+"""
 # Vypíše poslední znak z řetězce
 # print(course_name[-1])
 # Vypíše vše od 2. do 4. znaku (bez něj)
 print(course_name[1:4])
-
+"""
 '''
 Slice indexy mají specifické vlastnosti. Vynecháme-li první index, je za něj automaticky dosazena nula (začátek řetězce). 
 Při neuvedení druhého indexu se použije délka řetězce (čili konec řetězce). 
@@ -88,6 +89,7 @@ Při neuvedení druhého indexu se použije délka řetězce (čili konec řetě
 Další vlastností slice indexů je jejich automatické "zarovnávání" na rozměr řetězce. 
 Je-li totiž index použitý ve slice konstrukci příliš velký, je nahrazen délkou řetězce. 
 '''
+"""
 print(course_name[1:50])
 # Pokud je dolní index větší než horní, je výsledkem prázdný řetězec:
 # print(course_name[2:1])
@@ -99,7 +101,7 @@ second_name = "  Trump"
 
 # Opakování řetězců
 print(first_name + second_name * 3)
-
+"""
 '''
 Řetězce v jazyce Python nelze měnit. Pokusíme-li se změnit určitou pozici v řetězci, dojde k chybě.
 '''
@@ -107,6 +109,7 @@ print(first_name + second_name * 3)
 '''
 Proto jedinou cestou, jak vytvářet nové řetězce, je jejich kombinování, které je velice jednoduché a přitom efektivní:
 '''
+"""
 print('R' + first_name[1:] + 'o')
 
 # Formátovaný výstup, použití řetězcových funkcí
@@ -120,29 +123,29 @@ print(first_name.upper().replace("D", "*"))
 
 # Zjištění výskytu podřetězce
 print("na" not in first_name)
-
+"""
 '''
 Python umí pracovat s Unicode řetězci úplně stejným způsobem jako s obyčejnými řetězci. 
 Dokonce je možné díky konverzním funkcím snadno převádět obyčejné řetězce na Unicode a zpět.
 Unicode řetězce můžeme zapisovat přímo ve zdrojovém kódu programu. 
 Pouze před samotný řetězec vložíme prefix u (podobně jako u raw řetězců prefix r):
 '''
-
+"""
 print(u'\xe4\xf6\xfc')
-
+"""
 '''Pro konverzi znaků můžeme použít interní funkci encode(), 
 která umožňuje přístup ke všem registrovaným kodekům (např. Latin-1, ASCII, UTF-8 nebo UTF-16). '''
-
+"""
 print(u'äöü'.encode('utf-8'))
 print(u'čřž'.encode('latin2'))
-
+"""
 '''Opačnou konverzi umožňuje funkce decode(), které lze opět předat jediný argument - jméno kódování, 
 ve kterém je původní osmibitový řetězec.
 '''
-
+"""
 print(b'\xc3\xa4\xc3\xb6\xc3\xbc'.decode('utf-8'))
 print(b'\xe8\xf8\xbe'.decode('windows-1250'))
-
+"""
 ''' 
 Programátorská výzva:
 Použijte kombinaci různý možností pro práci s řetězci (včetně různých funkcí) i jiných prvků jazyka Python 
@@ -158,3 +161,46 @@ funkční kód, tím lepší).
 3. Vytvořte funkci, která vygeneruje náhodná hesla pro počet osob zadaný v parametru tak, aby heslo začínalo
    3 velkými písmeny, pokračovalo 3 malými písmeny, jedním speciálním znakem (-/+*) a končilo 3 náhodnými číslicemi.
 '''
+from camelcase import CamelCase as cc
+c = cc()
+something = "To je proměnná v Pythonu"
+something = something.lower().replace(" ", "_").replace("ě" or 'é', "e").replace("á", "a").replace("ý", "y").replace("ů" or "ú", "u")
+print(something)
+somethingDoubleAgent = something.replace("_", " ")
+
+print(c.hump(somethingDoubleAgent).replace(" ", ""))
+
+a_agent = input("Input the your line of text: ")
+
+
+def c_agent(aa):
+   snake_case = aa.lower().replace(" ", "_").replace("ě" or 'é', "e").replace("á", "a").replace("ý", "y").replace("ů" or "ú", "u")
+   print(snake_case)
+   camelCase = snake_case.replace("_", " ")
+   print(c.hump(camelCase).replace(" ", ""))
+   
+c_agent(a_agent)
+
+from dateutil import parser
+date = "9. 10. 2025"
+dateParsed = parser.parse(date, dayfirst=True)
+print(dateParsed.date().isoformat())
+
+import random
+import string
+
+def f_agent(count):
+    """Generate `count` passwords: 3 uppercase, 3 lowercase, one special (-/+*), 3 digits."""
+    specials = "-/+*"
+    pw_list = []
+    for _ in range(count):
+        pw = (
+            ''.join(random.choices(string.ascii_uppercase, k=3)) +
+            ''.join(random.choices(string.ascii_lowercase, k=3)) +
+            random.choice(specials) +
+            ''.join(random.choices(string.digits, k=3))
+        )
+        pw_list.append(pw)
+    return pw_list
+
+print(f_agent(3))
